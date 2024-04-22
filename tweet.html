@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tweet Bytes</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+    <style>
+        body {
+
+            background-image: url(background1.jpeg); /* Purple background color */
+            color: #fff; /* Text color */
+            font-family: Arial, sans-serif; /* Font family */
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #e6714b; /* Dark purple header background color */
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        .header-navigation {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-navigation ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header-navigation li {
+            margin: 0 10px;
+        }
+
+        .header-navigation a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            transition: font-size 0.2s ease;
+        }
+
+        .header-navigation a:hover {
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        main {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        #posts {
+    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white background */
+    border-radius: 10px;
+    padding: 20px; /* Decrease padding */
+    flex: 2;
+    margin-right: 20px;
+    backdrop-filter: blur(10px); /* Glass effect */
+    opacity: 0.9; /* Adjust opacity for glass effect */
+    max-width: 80em; /* Set maximum width */
+}
+
+
+        .tweet {
+            margin-bottom: 20px; /* Adjust margin as needed */
+            padding: 10px; /* Adjust padding as needed */
+            border-radius: 10px; /* Adjust border radius as needed */
+            background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white background */
+            backdrop-filter: blur(10px); /* Glass effect */
+            opacity: 0.9; /* Adjust opacity for glass effect */
+        }
+
+        .tweet-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .tweet-header img {
+            width: 30px; /* Decrease the width of the avatar image */
+            height: 30px; /* Decrease the height of the avatar image */
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .tweet-header h2 {
+            margin: 0;
+            font-size: 14px; /* Decrease the font size of the tweet username */
+        }
+
+        .tweet-header p {
+            margin: 0;
+            font-size: 14px;
+            color: white;
+        }
+
+        .tweet-content p {
+            color: #000;
+            margin: 0;
+            font-size: 15px;
+        }
+
+        .tweet-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .tweet-actions button {
+            background-color:  transparent;
+            border: none;
+            margin-right: 10px;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+
+        .tweet-actions button span {
+            font-size: 20px;
+            color:white;
+        }
+
+        #createTweetContainer {
+    position: absolute; /* Position the container relative to the nearest positioned ancestor */
+    top: 150px; /* Adjust the top position */
+    right: 20px; /* Adjust the right position */
+    z-index: 9999; /* Ensure it appears above other content */
+    cursor: pointer;
+}
+#createTweetBtn {
+    border: #000;
+    border-radius: 10px;
+    padding: 15px 30px; /* Increase padding to increase button size */
+    font-size: 15px; /* Increase font size for better visibility */
+}
+
+
+        .tweet-actions button:hover span {
+            color:   #7E57C2;
+        }
+
+        /* Comment Popup Styles */
+        .comment-popup {
+            display: none; /* Initially hidden */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            z-index: 9999; /* Ensure it appears above other content */
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .comment-popup h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #333; /* Adjust text color */
+        }
+
+        .comment-popup textarea {
+            width: calc(100% - 20px);
+            height: 100px;
+            resize: none; /* Disable resizing */
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            border: 2px solid black; /* Adjust border color */
+        }
+
+        .comment-popup button {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #662160df; /* Light purple button background color */
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .comment-popup button:hover {
+            background-color: #7E57C2; 
+        }
+
+        /* Style for comments */
+        .comment {
+            background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white background */
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .comment p {
+            margin: 0;
+            color: #000; /* Adjust text color */
+        }
+        .profile-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .profile-dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .profile-dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tweet Bytes</h1>
+        <nav class="header-navigation">
+            <ul>
+                <li id="profileDropdownTrigger" onclick="toggleProfileDropdown()" style="cursor: pointer;">Profile</li>
+                <li><a href="chatpage.html">Chat</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+        </nav>
+        <div class="profile-dropdown">
+            <div class="avatar" onclick="toggleProfileDropdown()"></div>
+            <div class="profile-dropdown-content" id="profileDropdownContent">
+                <a href="tweet.html">My Posts</a>
+                <a href="#">Change Password</a>
+                <a href="#">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Container for posts -->
+        <section id="posts">
+            <!-- Sample tweet -->
+            <article class="tweet">
+                <div class="tweet-header">
+                    <img src="avatar1.svg" alt="User Avatar">
+                    <h2>ByteBuddies</h2><br><br>
+                    <p>Posted on <time datetime="2024-04-22T12:00">April 22, 2024</time></p>
+                </div>
+                <div class="tweet-content">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla pretium, tortor quis aliquam ullamcorper, eros nunc facilisis leo, ut volutpat eros orci sed dolor.</p>
+                </div>
+                <div class="tweet-actions">
+                    <button class="like-btn"><span class="material-symbols-outlined">thumb_up</span></button>
+                    <button class="share-btn"><span class="material-symbols-outlined">send</span></button>
+                    <button class="comment-btn"><span class="material-symbols-outlined">comment</span></button>
+                    <div class="comment-popup">
+                        <button class="closeCommentPopup">&times;</button>
+                        <textarea id="commentContent" placeholder="Enter your comment" required></textarea>
+                        <button id="submitCommentBtn">Submit</button>
+                    </div>
+                    <div class="comments-section" id="commentsSection">
+                        <!-- Comments will be dynamically added here -->
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+    
+    <!-- Container for the create tweet button and form -->
+    <div id="createTweetContainer">
+        <button id="createTweetBtn">Create Tweet</button>
+        <div id="tweetFormContainer" style="display: none;">
+            <div class="tweet-form-box">
+                <h2>Add Tweet</h2>
+                <form id="tweetForm">
+                    <textarea id="tweet-content" placeholder="What's on your mind?" required rows="3"></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleProfileDropdown() {
+            var dropdownContent = document.getElementById("profileDropdownContent");
+            if (dropdownContent.style.display === "block") {
+                dropdownContent.style.display = "none";
+            } else {
+                dropdownContent.style.display = "block";
+            }
+        }
+
+        // Toggle comment popup visibility
+        document.querySelectorAll('.comment-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var popup = this.parentElement.querySelector('.comment-popup');
+                if (popup.style.display === 'block') {
+                    popup.style.display = 'none';
+                } else {
+                    popup.style.display = 'block';
+                }
+            });
+        });
+
+        // Close comment popup
+        document.querySelectorAll('.closeCommentPopup').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                this.parentElement.style.display = 'none';
+            });
+        });
+
+        // Function to add a new comment
+        function addComment(username, comment) {
+            var commentsSection = document.getElementById('commentsSection');
+            var newComment = document.createElement('div');
+            newComment.classList.add('comment');
+            newComment.innerHTML = '<p><strong>' + username + ':</strong> ' + comment + '</p>';
+            commentsSection.appendChild(newComment);
+        }
+
+        // Submit comment
+        document.getElementById('submitCommentBtn').addEventListener('click', function(event) {
+            event.preventDefault();
+            var commentContent = document.getElementById('commentContent').value;
+            addComment('User', commentContent); // Change 'User' to the actual username
+            document.getElementById('commentContent').value = ''; // Clear comment textarea
+            document.querySelector('.comment-popup').style.display = 'none'; // Hide comment popup after submitting
+        });
+
+        // Function to toggle tweet form visibility and update button text
+        // Function to toggle tweet form visibility and update button text
+function toggleTweetForm() {
+    var formContainer = document.getElementById('tweetFormContainer');
+    var postsContainer = document.getElementById('posts');
+    if (formContainer.style.display === 'block') {
+        formContainer.style.display = 'none';
+        postsContainer.style.marginRight = '20px'; // Reset the margin
+        document.getElementById('createTweetBtn').textContent = 'Create Tweet';
+    } else {
+        formContainer.style.display = 'block';
+        postsContainer.style.marginRight = '250px'; // Adjust the margin to move the existing tweet box
+        document.getElementById('createTweetBtn').textContent = 'Cancel';
+    }
+}
+
+// Toggle tweet form visibility and update button text
+document.getElementById('createTweetBtn').addEventListener('click', toggleTweetForm);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<section id="posts">
+  <!-- Individual post -->
+  <article class="post">
+      <div class="post-header">
+          <img src="user-avatar.jpg" alt="User Avatar">
+          <h2>Username</h2>
+          <p>Posted on <time datetime="2024-04-22T12:00">April 22, 2024</time></p>
+      </div>
+      <div class="post-content">
+          <p>This is the content of the post.</p>
+          <!-- Add options like comments, likes, reactions here -->
+      </div>
+  </article>
+  <!-- Repeat the above structure for multiple posts -->
+</section>
+
+<!-- Container for chat -->
+<section id="chat">
+  <!-- Chat messages -->
+  <div class="chat-messages">
+      <!-- Individual chat message -->
+      <div class="chat-message">
+          <img src="user-avatar.jpg" alt="User Avatar">
+          <div class="message-content">
+              <p>Username: Hi there!</p>
+              <time datetime="2024-04-22T12:05">12:05 PM</time>
+          </div>
+      </div>
+      <!-- Repeat the above structure for multiple chat messages -->
+  </div>
+  <!-- Chat input form -->
+  <form id="chat-form">
+      <input type="text" id="message-input" placeholder="Type your message...">
+      <button type="submit">Send</button>
+  </form>
+</section>
+</div>
+</main>
+
+<footer>
+<!-- Add footer content here -->
+</footer>
+
+
+<style>
+  
+header {
+    background-color: #673AB7; /* Dark purple header background color */
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+main {
+    align-items: center;
+    display: flex;
+    justify-content: right;
+    padding: 20px;
+}
+
+#posts, #chat {
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+    border-radius: 10px;
+    padding: 20px;
+    flex: 1;
+    margin-right: 20px;
+}
+
+.post, .chat-message {
+    margin-bottom: 20px;
+}
+
+.post-header, .chat-message {
+    display: flex;
+    align-items: center;
+}
+
+.post-header img, .chat-message img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.post-header h2 {
+    margin: 0;
+}
+
+.post-content {
+    margin-top: 10px;
+}
+
+#chat-form {
+    display: flex;
+    margin-top: 20px;
+}
+
+#message-input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #9575CD; /* Light purple button background color */
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #7E57C2; /* Darker purple hover color */
+}
+
+.chat-message {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #9575CD;
+    color: #fff;
+    border-radius: 5px;
+}
+</style>
+
+<script>
+  function addChatMessage(message) {
+    // Create a new message element
+    var messageElement = document.createElement('div');
+    messageElement.classList.add('chat-message');
+    messageElement.textContent = message;
+
+    // Append the message to the chat container
+    document.getElementById('chat').appendChild(messageElement);
+
+    // Set a timeout to remove the message after 5 seconds
+    setTimeout(function() {
+        messageElement.remove();
+    }, 5000); // Adjust the time interval as needed (in milliseconds)
+}
+
+addChatMessage('Hello, welcome to the ByteBuddies Chat!');
+
+</script>

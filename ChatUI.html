@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ByteBuddies</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <style>
+        body {
+    background-image: url(background1.jpeg); /* Purple background color */
+    color: #fff; /* Text color */
+    font-family: Arial, sans-serif; /* Font family */
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #e6714b; /* Dark purple header background color */
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+.header-navigation {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.header-navigation ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.header-navigation li {
+    margin: 0 10px;
+}
+
+.header-navigation a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    transition: font-size 0.2s ease;
+}
+
+.header-navigation a:hover {
+    font-size: 25px;
+    cursor: pointer;
+}
+
+main {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+#posts, #chat {
+    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white background */
+    border-radius: 10px;
+    padding: 20px;
+    flex: 1;
+    margin-right: 20px;
+    backdrop-filter: blur(10px); /* Glass effect */
+    opacity: 0.9; /* Adjust opacity for glass effect */
+}
+
+.post, .chat-message {
+    margin-bottom: 20px;
+}
+
+.post-header, .chat-message {
+    display: flex;
+    align-items: center;
+}
+
+.post-header img, .chat-message img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.post-content img {
+    max-width: 100%; /* Ensure the image doesn't exceed the width of its container */
+    height: auto; /* Maintain the aspect ratio of the image */
+    display: block; /* Ensure the image behaves as a block element */
+    margin: 0 auto; /* Center the image horizontally */
+    margin-top: 10px; /* Add some space between the image and the paragraph */
+}
+
+
+.post-header h2{
+    margin: 0;
+}
+
+.post-content {
+    margin-top: 10px;
+}
+
+#chat-form {
+    display: flex;
+    margin-top: 20px;
+}
+
+#message-input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #662160df; /* Light purple button background color */
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #7E57C2; /* Darker purple hover color */
+}
+
+.container {
+    position: fixed;
+    top: 20px;
+    left: 0;
+    width: 50px; /* Adjust as needed */
+    transition: width 0.3s ease;
+    overflow: hidden;
+}
+
+.avatar {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.avatar-menu {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 5px 0;
+}
+
+.menu-item {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.menu-item:hover {
+    background-color: #f0f0f0;
+}
+.post-actions {
+    margin-top: 20px;
+}
+
+.post-actions button {
+    padding: 8px 16px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #9575CD;
+    color: white;
+    cursor: pointer;
+}
+
+.post-actions button:hover {
+    background-color: #7E57C2;
+}
+
+.postForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white background */
+    border-radius: 10px;
+    padding: 20px;
+    backdrop-filter: blur(10px); /* Glass effect */
+    opacity: 0.9; /* Adjust opacity for glass effect */
+    margin-bottom: 20px;
+}
+
+.postForm input[type="file"],
+.postForm input[type="text"],
+.postForm button {
+    margin-bottom: 10px;
+}
+
+.postForm button {
+    background-color: #662160df; /* Light purple button background color */
+    color: #fff;
+    border: 2px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.postForm button:hover {
+    background-color: #7E57C2; /* Darker purple hover color */
+}
+
+.postForm input[type="file"],
+.postForm input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.postForm input[type="file"] {
+    margin-bottom: 20px;
+}
+
+.profile-dropdown {
+            position: relative;
+        }
+
+        .profile-dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            min-width: 120px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            top: 50px; /* Adjust the position of the dropdown */
+            right: 0;
+        }
+
+        .profile-dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .profile-dropdown:hover .profile-dropdown-content {
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ByteBuddies</h1>
+        <nav class="header-navigation">
+            <ul>
+                <li id="profileDropdownTrigger" onclick="toggleProfileDropdown()" style="cursor: pointer;">Profile</li>
+                <li><a href="tweet.html">Tweets</a></li>
+                <li><a href="chatpage.html">Chats</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+        </nav>
+        <div class="profile-dropdown">
+            <div class="avatar" onclick="toggleProfileDropdown()"></div>
+            <div class="profile-dropdown-content" id="profileDropdownContent">
+                <a href="tweet.html">My Posts</a>
+                <a href="#">Change Password</a>
+                <a href="#">Logout</a>
+            </div>
+        </div>
+        <div id="avatar-container">
+            <div id="avatar" class="avatar" onclick="toggleOptions()"></div>
+            <div id="avatar-menu" class="avatar-menu" style="display: none;">
+                <div class="menu-item">Log Out</div>
+                <div class="menu-item">Option 2</div>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        
+        <!-- Container for posts -->
+        <section id="posts">
+            <!-- Individual post -->
+            
+            <article class="post">
+                <button id="openFormBtn">Create Post</button>
+
+                <form id="postForm" style="display: none;">
+                    <h2>ByteBuddies</h2>
+                    <p>Posted on <time></time></p>
+                    <!-- Form fields for creating a post -->
+                    <div class="post-header">
+                        <label for="postImage">Select Image:</label>
+                        <input type="file" id="postImage" required>
+                        <label for="postContent">Caption:</label>
+                        <input type="text" id="postContent" placeholder="Enter your caption"><br><br>
+                        <button type="submit" id="createpost">Post</button><br><br>
+                        <button type="reset" id="closeFormBtn">Cancel</button>
+                    </div>
+                </form>
+    </div><br><br>
+                <div class="post-header">
+                    <img class="newpost" src="avatar1.svg" alt="User Avatar">
+                    <h2>ByteBuddies</h2>
+                    <p>Posted on <time datetime="2024-04-22T12:00">April 22, 2024</time></p>
+                </div>
+                <div class="post-content">
+                    <img src="post1.jpg" alt="usesr-post">
+                    <p>Power Rangers!!</p>
+                    <div class="post-actions">
+                        <button class="like-btn"><span class="material-symbols-outlined">
+                            thumb_up
+                            </span></button>
+                        <button class="share-btn"><span class="material-symbols-outlined">
+                            send
+                            </span></button>
+                        <button class="comment-btn"><span class="material-symbols-outlined">
+                            comment
+                            </span></button>
+                    </div>
+                    
+                </div>
+            </article>
+            
+                    
+            </article>
+        </section>
+
+        <!-- Container for chat -->
+        <section id="chat">
+            <!-- Chat messages -->
+            <div class="chat-messages">
+                <!-- Individual chat message -->
+                <div class="chat-message">
+                    <img src="avatar1.svg" alt="User Avatar">
+                    <div class="message-content">
+                        <p>Cruze : Hola</p>
+                        <time datetime="2024-04-22T12:05">12:05 PM</time>
+                    </div>
+                </div>
+                <!-- Repeat the above structure for multiple chat messages -->
+            </div>
+            <!-- Chat input form -->
+            <form id="chat-form">
+                <input type="text" id="message-input" placeholder="Type your message...">
+                <button type="submit">Send</button>
+            </form>
+            <div class="chat-message">
+                <img src="avatar1.svg" alt="User Avatar">
+                <div class="message-content">
+                    <p>Thunder Spark : Fangshi</p>
+                    <time datetime="2024-04-22T12:05">12:05 PM</time>
+                </div>
+            </div>
+            <!-- Repeat the above structure for multiple chat messages -->
+        <!-- Chat input form -->
+        <form id="chat-form">
+            <input type="text" id="message-input" placeholder="Type your message...">
+            <button type="submit">Send</button>
+        </form>
+        <div class="chat-message">
+            <img src="avatar1.svg" alt="User Avatar">
+            <div class="message-content">
+                <p>SecAD: Any Update about Project??</p>
+                <time datetime="2024-04-22T12:05">12:05 PM</time>
+            </div>
+        </div>
+        <!-- Repeat the above structure for multiple chat messages -->
+    </div>
+    <!-- Chat input form -->
+    <form id="chat-form">
+        <input type="text" id="message-input" placeholder="Type your message...">
+        <button type="submit">Send</button>
+    </form>
+        </section>
+    
+    </main>
+    
+    <footer>
+        <!-- Add footer content here -->
+    </footer>
+
+    <script>
+         function toggleProfileDropdown() {
+            var dropdownContent = document.getElementById("profileDropdownContent");
+            if (dropdownContent.style.display === "block") {
+                dropdownContent.style.display = "none";
+            } else {
+                dropdownContent.style.display = "block";
+            }
+        }
+        // Get the button and form elements
+const openFormBtn = document.getElementById('openFormBtn');
+const closeFormBtn = document.getElementById('closeFormBtn');
+const postForm = document.getElementById('postForm');
+
+// Add event listener to the button
+openFormBtn.addEventListener('click', function() {
+    // Toggle the display of the form
+    postForm.style.display = postForm.style.display === 'none' ? 'block' : 'none';
+});
+closeFormBtn.addEventListener('click', function() {
+    postForm.style.display = postForm.style.display === 'none' ? 'block' : 'none';
+});
+
+// Add event listener to the form for form submission
+postForm.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Get the current date and time
+    const currentDate = new Date();
+    const formattedDate = currentDate.toISOString(); // Convert to ISO string format
+
+    // Get form data
+    const postContent = document.getElementById('postContent').value;
+    const postImage = document.getElementById('postImage').files[0]; // Assuming only one image is selected
+
+    // Update the <time> element with the formatted date
+    const postTime = document.querySelector('.post-header time');
+    postTime.textContent = formattedDate;
+
+    // Create a new post element
+    const newPost = document.createElement('article');
+    newPost.classList.add('post');
+
+    // Construct the post content
+    const postHeader = document.createElement('div');
+    postHeader.classList.add('post-header');
+    const avatarImg = document.createElement('img');
+    avatarImg.src = "avatar1.svg"; // Assuming avatar image source
+    avatarImg.alt = "User Avatar";
+    const username = document.createElement('h2');
+    username.textContent = "ByteBuddies";
+    const postedOn = document.createElement('p');
+    postedOn.innerHTML = "Posted on <time>" + formattedDate + "</time>"; // Set the time
+    postHeader.appendChild(avatarImg);
+    postHeader.appendChild(username);
+    postHeader.appendChild(postedOn);
+
+    const postContentContainer = document.createElement('div');
+    postContentContainer.classList.add('post-content');
+    const caption = document.createElement('p');
+    caption.textContent = postContent; // Using the entered post content
+    const image = document.createElement('img');
+    image.src = URL.createObjectURL(postImage); // Using the selected image
+    image.alt = "User Post Image";
+    postContentContainer.appendChild(caption);
+    postContentContainer.appendChild(image);
+
+    // Add like, share, and comment buttons
+    const postActions = document.createElement('div');
+    postActions.classList.add('post-actions');
+    const likeButton = document.createElement('button');
+    likeButton.classList.add('like-btn');
+    likeButton.innerHTML = '<span class="material-symbols-outlined">thumb_up</span>';
+    const shareButton = document.createElement('button');
+    shareButton.classList.add('share-btn');
+    shareButton.innerHTML = '<span class="material-symbols-outlined">send</span>';
+    const commentButton = document.createElement('button');
+    commentButton.classList.add('comment-btn');
+    commentButton.innerHTML = '<span class="material-symbols-outlined">comment</span>';
+    postActions.appendChild(likeButton);
+    postActions.appendChild(shareButton);
+    postActions.appendChild(commentButton);
+
+    // Append post header, content, and actions to the new post element
+    newPost.appendChild(postHeader);
+    newPost.appendChild(postContentContainer);
+    newPost.appendChild(postActions);
+
+    // Append the new post to the posts section
+    const postsSection = document.getElementById('posts');
+    postsSection.appendChild(newPost);
+
+    // Reset the form and hide it
+    postForm.reset();
+    postForm.style.display = 'none';
+});
+
+    </script>
+</body>
+</html>

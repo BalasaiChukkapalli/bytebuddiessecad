@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome To ByteBuddies</title>
+  <style>
+    @media screen and (min-width: 767px) {
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url(background1.jpeg);
+    background-size: cover;
+    background-position: center;
+  }
+}
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    min-height: 90vh;
+    border-radius: 1.5vh;
+    border-width: 2px;
+    border-color: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    /* Original background */
+    background: linear-gradient(to right, #FFA500, #FF6347); /* Orange gradient */
+    /* Reflective effect */
+    background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0)); /* Reflective overlay */
+    background-size: 100% 20%; /* Size and position of the reflective overlay */
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+  }
+
+  .content {
+    text-align: center;
+  }
+  h1 {
+    color: white;
+    font-weight: bolder;
+  }
+  .showpassword {
+    color: #ccc;
+  }
+  .textfield {
+    width: 200px;
+    height: 32px;
+    border: 2px solid white;
+    border-radius: 20px;
+  }
+  button {
+    display: inline-block;
+    width: 150px;
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid #e35d25;
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    transition: all 0.5s ease-in;
+    z-index: 1;
+    cursor: pointer;
+  }
+
+  button::before,
+  button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 100%;
+    transform: skew(15deg);
+    transition: all 0.25s;
+    overflow: hidden;
+    z-index: -1;
+  }
+
+
+  button::before {
+    left: -10px;
+    background: #c94814;
+  }
+
+  button::after {
+    right: -10px;
+    background: #c94814;
+  }
+
+  button:hover::before,
+  button:hover::after {
+    width: 58%;
+  }
+
+  button:hover span {
+    color: #fff;
+    transition: 0.25s;
+  }
+
+  button span {
+    color: #e35d25;
+    font-size: 18px;
+    transition: all 0.25s ease-in;
+  }
+  .checkbox-container input[type="checkbox"] {
+    width: 15px; 
+    height: 15px;
+    margin-right: 5px;
+}
+  .checkbox-container label{
+    font-size: 20px;
+  }
+
+  </style>
+  <script>
+    function togglePasswordVisibility() {
+            var passwordField1 = document.getElementById("password"); 
+            var passwordField2 = document.getElementById("cpassword");
+            if (passwordField1.type === "password") {
+                passwordField1.type = "text"; 
+                passwordField2.type = "text"; 
+            } 
+            else {
+                passwordField1.type = "password"; 
+                passwordField2.type = "password";
+            }
+        } 
+  </script>
+  </head>
+  <body>
+    <div class="container">
+        <div class="content">
+            <form method="post" action="">
+                <h1>ByteBuddies Sign In</h1>
+                <input class="textfield" type="text" id="username" name="username" placeholder="Username" required><br><br>
+                <input class="textfield" type="password" id="password" name="password" placeholder="Password" required><br><br>
+                <div class="checkbox-container">
+                    <input type="checkbox" onclick="tooglePasswordVisibility()"><label class="showpassword">Show Password</label><br><br>
+                </div>
+                <button type="submit"><span>Sign In</span></button>
+            </form>
+        </div>
+    </div>
+  </body>
+  </html>

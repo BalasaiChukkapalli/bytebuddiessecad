@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service - ByteBuddies</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Hide content by default */
+    body {
+      display: none;
+    }
+
+    /* Show content for non-mobile devices */
+    @media screen and (min-width: 767px) {
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-image: url(background1.jpeg); 
+        background-size: cover;
+        background-position: center;
+      }
+
+      .container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 90%;
+        min-height: 90vh;
+        border-radius: 1.5vh;
+        border-width: 2px;
+        border-color: rgba(255, 255, 255, 0.1);
+        padding: 40px;
+        /* Original background */
+        background: linear-gradient(to right, #FFA500, #FF6347); /* Orange gradient */
+        /* Reflective effect */
+        background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0)); /* Reflective overlay */
+        background-size: 100% 20%; /* Size and position of the reflective overlay */
+        background-repeat: no-repeat;
+        background-position: 0 0;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(10px);
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        margin-bottom: 40px;
+      }
+
+      nav ul li {
+        margin: 0 10px;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: 700;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      nav ul li a:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      .menu-icon {
+        display: none;
+      }
+
+      .content {
+        text-align: center;
+      }
+
+      h2 {
+        font-size: 2.5rem;
+        color: #fff;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 1.5rem;
+        color: #fff;
+        margin-bottom: 40px;
+        animation: bounce 2s infinite;
+
+      }
+
+      .nav-capsule {
+        background-color: #bd4211; /* Orange color */
+        border-radius: 25px; /* Adjust as needed */
+        margin-bottom: 20px;
+        padding: 10px 20px; /* Adjust padding as needed */
+        display: flex; /* Use flexbox */
+        justify-content: center; /* Center horizontally */
+      }
+
+      .nav-capsule ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-capsule ul li {
+        margin-right: 10px; /* Adjust spacing between links as needed */
+      }
+
+      .nav-capsule ul li:last-child {
+        margin-right: 0; /* Remove margin from last child to avoid extra space */
+      }
+
+      .nav-capsule ul li a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: 700;
+        padding: 5px 10px; /* Adjust padding as needed */
+        border-radius: 20px; /* Adjust as needed */
+      }
+
+      .nav-capsule ul li a:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <div class="nav-capsule">
+        <ul>
+          <!-- Update this link-->
+          <li><a href="index.html" class="nav-link">HOME</a></li>
+          <li><a href="about.html" class="nav-link">ABOUT</a></li>
+          <li><a href="contact.html" class="nav-link">CONTACT</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="content">
+      <div class="app-info">
+        <h2>SERVICE 🚀</h2>
+      </div>
+      <p class="service-info">We provide various services to meet your needs. Stay tuned for updates!</p>
+    </div>
+  </div>
+</body>
+</html>

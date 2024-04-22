@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<head>
+<style>
+    /* comment-popup.css */
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.popup-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#comment-content {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+    margin-bottom: 10px;
+}
+
+#comment-content:focus {
+    outline: none;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+</style>
+</head>
+<body>
+    <!-- comment-popup.html -->
+<div id="comment-popup" class="popup">
+    <div class="popup-content">
+        <span class="close">&times;</span>
+        <h2>Add Comment</h2>
+        <form id="comment-form">
+            <textarea id="comment-content" placeholder="Type your comment..." required></textarea>
+            <button type="submit">Post Comment</button>
+        </form>
+    </div>
+</div>
+<script>
+    // JavaScript to toggle the display of the comment popup
+const commentPopup = document.getElementById('comment-popup');
+const openCommentBtn = document.getElementById('open-comment-btn');
+const closeCommentBtn = document.querySelector('.close');
+
+openCommentBtn.addEventListener('click', function() {
+    commentPopup.style.display = 'block';
+});
+
+closeCommentBtn.addEventListener('click', function() {
+    commentPopup.style.display = 'none';
+});
+
+// Close the popup when clicking outside of it
+window.addEventListener('click', function(event) {
+    if (event.target == commentPopup) {
+        commentPopup.style.display = 'none';
+    }
+});
+
+</script>
+</body>
